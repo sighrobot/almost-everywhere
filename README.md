@@ -85,6 +85,14 @@ ogr2ogr -f PostgreSQL PG:"host=localhost port=5432 dbname=<YOUR_DB_NAME> user=<Y
 
 ### Analysis
 
+- [PostGIS Performance tips](https://postgis.net/docs/performance_tips.html)
+- [More PostgreSQL perf](https://www.cybertec-postgresql.com/en/postgresql-parallel-create-index-for-better-performance/)
+- [Dump query to output file (`.csv`)](https://www.postgresql.org/message-id/15392.46537.511719.871128%40elsick.csl.co.uk)
+- [Create spatial index on a table](https://postgis.net/workshops/postgis-intro/indexing.html) (I did this for both tables in query below)
+- [Refresher on joins](https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins)
+
+
+
 Best query so far (takes 20-30min) modeled after [[source](https://gis.stackexchange.com/a/284910/52312)]:
 
 ```sql
@@ -109,3 +117,5 @@ SELECT COUNT(DISTINCT(objectid)) FROM (SELECT * FROM roadbed) AS s JOIN service_
 ```
 
 I * think * this means that 84% of `roadbed` features contain at least one point from 311.
+
+SHOULD TRY TO SIMPLIFY GEOMETRIES
