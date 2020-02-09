@@ -138,8 +138,48 @@ CREATE TABLE hits_roadbed AS (
 
 ```
 
+get approx. table row counts:
+
+```sql
+SELECT 
+  nspname AS schemaname,relname,reltuples
+FROM pg_class C
+LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace)
+WHERE 
+  nspname NOT IN ('pg_catalog', 'information_schema') AND
+  relkind='r' 
+ORDER BY reltuples DESC;
+```
+
 All `roadbed` features|`roadbed` "scraps"
 -----|-----
 ![hits](./roadbed_all.png)|![miss](./roadbed_miss.png)
+
+ Feature type|Total|# Scraps|% removed|Analysis runtime (min)
+-----|-----:|-----:|-----:|----:
+`service_requests`|22232364|n/a|n/a
+`curb`|211803|?|%
+`pavement_edge`|178124|?|%
+`roadbed`|92389|14852|84%|30
+`sidewalk`|49426|?|%
+`sidewalk_line`|43722|?|%
+`parking_lot`|20704|?|%
+`median`|15357|?|%
+`roadbed_miss`|14852|?|%
+`swimming_pool`|14395|?|%
+`railroad`|14356|?|%
+`open_space_no_park`|14043|?|%
+`park`|12380|?|%
+`railroad_structure`|9910|?|%
+`spatial_ref_sys`|8500|?|%
+`misc_structure_poly`|4562|?|%
+`retainingwall`|4078|?|%
+`hydro_structure`|2408|?|%
+`transport_structure`|2219|?|%
+`hydrography`|2216|?|%
+`plaza`|1355|?|%
+`shoreline`|489|?|%
+`boardwalk`|135|?|%
+~`elevation`~|~1403100~|n/a|n/a
 
 SHOULD STILL TRY TO SIMPLIFY GEOMETRIES
