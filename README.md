@@ -121,4 +121,21 @@ SELECT count(*) FROM roadbed;
 
 I * think * this means that 84% of `roadbed` features contain at least one point from 311.
 
-SHOULD TRY TO SIMPLIFY GEOMETRIES
+Update: here is the process
+
+1. create a `hits_` table:
+
+```psql
+CREATE TABLE hits_roadbed AS (
+  SELECT DISTINCT(objectid) from (SELECT * FROM roadbed) AS features
+  JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
+ );
+```
+
+2. create a `miss_` table:
+
+```psql
+
+```
+
+SHOULD STILL TRY TO SIMPLIFY GEOMETRIES
