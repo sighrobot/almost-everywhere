@@ -151,6 +151,7 @@ SHOULD STILL TRY TO SIMPLIFY GEOMETRIES
 ## Misc
 
 ### get approx. table row counts:
+[[source](https://stackoverflow.com/questions/2596670/how-do-you-find-the-row-count-for-all-your-tables-in-]postgres)
 
 ```sql
 SELECT 
