@@ -138,8 +138,8 @@ CREATE TABLE hits_roadbed AS (
 
 ```
 
-All roadbed features|misses
+All `roadbed` features|`roadbed` "scraps"
 -----|-----
-|
+![hits](./roadbed_all.png)|![miss](./roadbed_miss.png)
 
 SHOULD STILL TRY TO SIMPLIFY GEOMETRIES
