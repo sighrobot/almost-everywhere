@@ -119,23 +119,27 @@ SELECT count(*) FROM roadbed;
 (1 row)
 ```
 
-I * think * this means that 84% of `roadbed` features contain at least one point from 311.
+I *think* this means that 84% of `roadbed` features contain at least one point from 311.
 
-Update: here is the process
+UPDATE: here is the process for `roadbed` (btw this is the largest feature set at 92,389 features)
 
 1. create a `hits_` table:
 
-```psql
+```sql
 CREATE TABLE hits_roadbed AS (
   SELECT DISTINCT(objectid) from (SELECT * FROM roadbed) AS features
   JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
- );
+);
 ```
 
 2. create a `miss_` table:
 
-```psql
+```sql
 
 ```
+
+All roadbed features|misses
+-----|-----
+|
 
 SHOULD STILL TRY TO SIMPLIFY GEOMETRIES
