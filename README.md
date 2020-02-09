@@ -45,7 +45,7 @@ ALTER TABLE service_requests ADD COLUMN latitude NUMERIC;
 ALTER TABLE service_requests ADD COLUMN longitude NUMERIC;
 ```
 
-Copy in the cut csv:
+Copy in the cut csv [[source](https://dataschool.com/learn-sql/importing-data-from-csv-in-postgresql/)]:
 
 ```sql
 COPY service_requests FROM '/Users/abe.rubenstein/Downloads/slim311.csv' DELIMITER ',' CSV HEADER;
