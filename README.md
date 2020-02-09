@@ -96,23 +96,26 @@ ogr2ogr -f PostgreSQL PG:"host=localhost port=5432 dbname=<YOUR_DB_NAME> user=<Y
 Best query so far (takes 20-30min) modeled after [[source](https://gis.stackexchange.com/a/284910/52312)]:
 
 ```sql
-SELECT count(*) FROM roadbed;
-```
-```
- count 
--------
- 92389
-(1 row)
-```
-
-```sql
-SELECT COUNT(DISTINCT(objectid)) FROM (SELECT * FROM roadbed) AS s JOIN service_requests AS p ON ST_Contains(s.shape, p.the_geom_2263);
+SELECT COUNT(DISTINCT(objectid))
+FROM (SELECT * FROM roadbed) AS s
+JOIN service_requests AS p
+ON ST_Contains(s.shape, p.the_geom_2263);
 ```
 
 ```
  count 
 -------
  77537
+(1 row)
+```
+
+```sql
+SELECT count(*) FROM roadbed;
+```
+```
+ count 
+-------
+ 92389
 (1 row)
 ```
 
