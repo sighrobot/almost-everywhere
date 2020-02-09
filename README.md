@@ -93,62 +93,25 @@ ogr2ogr -f PostgreSQL PG:"host=localhost port=5432 dbname=<YOUR_DB_NAME> user=<Y
 
 
 
-Best query so far (takes 20-30min) modeled after [[source](https://gis.stackexchange.com/a/284910/52312)]:
+Here is the process for `roadbed` [[source](https://gis.stackexchange.com/a/284910/52312)], [[source](https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins)]:
 
 ```sql
-SELECT COUNT(DISTINCT(objectid))
-FROM (SELECT * FROM roadbed) AS s
-JOIN service_requests AS p
-ON ST_Contains(s.shape, p.the_geom_2263);
-```
+# create hits_ table
+# this takes time to run
 
-```
- count 
--------
- 77537
-(1 row)
-```
-
-```sql
-SELECT COUNT(*) FROM roadbed;
-```
-```
- count 
--------
- 92389
-(1 row)
-```
-
-I *think* this means that 84% of `roadbed` features contain at least one point from 311.
-
-UPDATE: here is the process for `roadbed` (btw this is the largest feature set at 92,389 features)
-
-1. create a `hits_` table:
-
-```sql
 CREATE TABLE hits_roadbed AS (
   SELECT DISTINCT(objectid) FROM (SELECT * FROM roadbed) AS features
   JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
 );
-```
 
-2. create a `miss_` table:
+# create miss_ table
+# this takes almost no time to run
 
-```sql
-
-```
-
-get approx. table row counts:
-
-```sql
-SELECT 
-  nspname AS schemaname,relname,reltuples
-FROM pg_class C
-LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace)
-WHERE 
-  nspname NOT IN ('pg_catalog', 'information_schema') AND
-  relkind='r' 
-ORDER BY reltuples DESC;
+CREATE TABLE miss_roadbed AS (
+  SELECT a.objectid, a.shape FROM roadbed a
+  LEFT JOIN hits_roadbed b ON a.objectid = b.objectid
+  WHERE b.objectid IS NULL
+);
 ```
 
 All `roadbed` features|`roadbed` "scraps"
@@ -183,3 +146,19 @@ All `roadbed` features|`roadbed` "scraps"
 ~`elevation`~|~1403100~|n/a|n/a
 
 SHOULD STILL TRY TO SIMPLIFY GEOMETRIES
+
+
+## Misc
+
+### get approx. table row counts:
+
+```sql
+SELECT 
+  nspname AS schemaname,relname,reltuples
+FROM pg_class C
+LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace)
+WHERE 
+  nspname NOT IN ('pg_catalog', 'information_schema') AND
+  relkind='r' 
+ORDER BY reltuples DESC;
+```
