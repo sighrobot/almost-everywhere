@@ -110,7 +110,7 @@ ON ST_Contains(s.shape, p.the_geom_2263);
 ```
 
 ```sql
-SELECT count(*) FROM roadbed;
+SELECT COUNT(*) FROM roadbed;
 ```
 ```
  count 
@@ -127,7 +127,7 @@ UPDATE: here is the process for `roadbed` (btw this is the largest feature set a
 
 ```sql
 CREATE TABLE hits_roadbed AS (
-  SELECT DISTINCT(objectid) from (SELECT * FROM roadbed) AS features
+  SELECT DISTINCT(objectid) FROM (SELECT * FROM roadbed) AS features
   JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
 );
 ```
