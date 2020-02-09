@@ -140,7 +140,7 @@ All `roadbed` features|`roadbed` "scraps"
 `hydro_structure`|2408|?|%
 `transport_structure`|2219|?|%
 `hydrography`|2216|?|%
-`plaza`|1355|?|%
+`plaza`|1355|1214|10%|2
 `shoreline`|489|?|%
 `boardwalk`|135|?|%
 ~`elevation`~|~1403100~|n/a|n/a
