@@ -85,7 +85,7 @@ ogr2ogr -f PostgreSQL PG:"host=localhost port=5432 dbname=<YOUR_DB_NAME> user=<Y
 
 ### Analysis
 
-Best query so far (takes 20-30min):
+Best query so far (takes 20-30min) modeled after [[source](https://gis.stackexchange.com/a/284910/52312)]:
 
 ```sql
 SELECT count(*) FROM roadbed;
