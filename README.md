@@ -155,7 +155,7 @@ All `roadbed` features|`roadbed` "scraps"
 -----|-----
 ![hits](./roadbed_all.png)|![miss](./roadbed_miss.png)
 
- Feature type|Total|# Scraps|% removed|Analysis runtime (min)
+ Feature type|Total|# Scraps|% removed|Runtime (min)
 -----|-----:|-----:|-----:|----:
 `service_requests`|22232364|n/a|n/a
 `curb`|211803|?|%
