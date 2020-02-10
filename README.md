@@ -93,28 +93,9 @@ ogr2ogr -f PostgreSQL PG:"host=localhost port=5432 dbname=<YOUR_DB_NAME> user=<Y
 
 
 
-Here is the process for `roadbed` [[source](https://gis.stackexchange.com/a/284910/52312)], [[source](https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins)]:
+Here is the process for creating a subset of `roadbed` that only contains "scrap" features [[source](https://gis.stackexchange.com/a/284910/52312)], [[source](https://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins)]:
 
 ```sql
-# create hits_ table
-# this takes time to run
-
-CREATE TABLE hits_roadbed AS (
-  SELECT DISTINCT(objectid) FROM (SELECT * FROM roadbed) AS features
-  JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
-);
-
-# create miss_ table
-# this takes almost no time to run
-
-CREATE TABLE miss_roadbed AS (
-  SELECT a.objectid, a.shape FROM roadbed a
-  LEFT JOIN hits_roadbed b ON a.objectid = b.objectid
-  WHERE b.objectid IS NULL
-);
-
-# OR DO IT IN ONE FELL SWOOP:
-
 CREATE TABLE miss_roadbed AS (
   SELECT features.* FROM roadbed AS features
   LEFT JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
