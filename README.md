@@ -132,6 +132,10 @@ All `roadbed` features|`roadbed` "scraps"
 `retainingwall`|4078|n/a|n/a|n/a
 `shoreline`|489|n/a|n/a|n/a
 
+Total non-line|Total non-line scrap|% removed
+-----|-----|-----
+239679|149843|37%
+
 
 ## Misc
 
