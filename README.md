@@ -129,29 +129,27 @@ All `roadbed` features|`roadbed` "scraps"
  Feature type|Total|# Scraps|% removed|Runtime
 -----|-----:|-----:|-----:|----:
 `service_requests`|22232364|n/a|n/a|n/a
-`curb`|211803|n/a|n/a|n/a
-`pavement_edge`|178124|n/a|n/a|n/a
 `roadbed`|92389|14852|84%|20 sec
 `sidewalk`|49426|46935|5%|60 sec
-`sidewalk_line`|43722|n/a|n/a|n/a
 `parking_lot`|20704|19657|5%|1 sec
-`median`|15357|?|%
-`swimming_pool`|14395|?|%
-`railroad`|14356|?|%
-`open_space_no_park`|14043|?|%
-`park`|12380|?|%
-`railroad_structure`|9910|?|%
-`misc_structure_poly`|4562|?|%
-`retainingwall`|4078|?|%
-`hydro_structure`|2408|?|%
-`transport_structure`|2219|?|%
-`hydrography`|2216|?|%
-`plaza`|1355|1214|10%|2
-`shoreline`|489|?|%
-`boardwalk`|135|?|%
-~`elevation`~|~1403100~|n/a|n/a
-
-SHOULD STILL TRY TO SIMPLIFY GEOMETRIES?
+`median`|15357|9854|36%|15 sec
+`swimming_pool`|14395|14390|0.03%|1 sec
+`open_space_no_park`|14043|13510|4%|2 sec
+`park`|12380|9710|22%|5 sec
+`railroad_structure`|9910|9355|6%|2 sec
+`misc_structure_poly`|4562|4509|1%|0 sec
+`hydro_structure`|2408|2342|3%|8 sec
+`transport_structure`|2219|1283|42%|30 sec
+`hydrography`|2216|2120|4%|35 sec
+`plaza`|1355|1214|10%|1 sec
+`boardwalk`|135|112|17%|6 sec
+`elevation`|1403100|n/a|n/a|n/a
+`curb`|211803|n/a|n/a|n/a
+`pavement_edge`|178124|n/a|n/a|n/a
+`sidewalk_line`|43722|n/a|n/a|n/a
+`railroad`|14356|n/a|n/a|n/a
+`retainingwall`|4078|n/a|n/a|n/a
+`shoreline`|489|n/a|n/a|n/a
 
 
 ## Misc
