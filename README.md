@@ -112,21 +112,29 @@ CREATE TABLE miss_roadbed AS (
   LEFT JOIN hits_roadbed b ON a.objectid = b.objectid
   WHERE b.objectid IS NULL
 );
+
+# OR DO IT IN ONE FELL SWOOP:
+
+CREATE TABLE miss_roadbed AS (
+  SELECT features.* FROM roadbed AS features
+  LEFT JOIN service_requests AS points ON ST_Contains(features.shape, points.the_geom_2263)
+  WHERE points.the_geom_2263 IS NULL
+);
 ```
 
 All `roadbed` features|`roadbed` "scraps"
 -----|-----
 ![hits](./roadbed_all.png)|![miss](./roadbed_miss.png)
 
- Feature type|Total|# Scraps|% removed|Runtime (min)
+ Feature type|Total|# Scraps|% removed|Runtime
 -----|-----:|-----:|-----:|----:
-`service_requests`|22232364|n/a|n/a
-`curb`|211803|?|%
-`pavement_edge`|178124|?|%
-`roadbed`|92389|14852|84%|30
-`sidewalk`|49426|?|%
-`sidewalk_line`|43722|?|%
-`parking_lot`|20704|?|%
+`service_requests`|22232364|n/a|n/a|n/a
+`curb`|211803|n/a|n/a|n/a
+`pavement_edge`|178124|n/a|n/a|n/a
+`roadbed`|92389|14852|84%|20 sec
+`sidewalk`|49426|46935|5%|60 sec
+`sidewalk_line`|43722|n/a|n/a|n/a
+`parking_lot`|20704|19657|5%|1 sec
 `median`|15357|?|%
 `swimming_pool`|14395|?|%
 `railroad`|14356|?|%
